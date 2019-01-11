@@ -1,0 +1,6 @@
+framework module Pods_KindergartenJoke {
+  umbrella header "Pods-KindergartenJoke-umbrella.h"
+
+  export *
+  module * { export * }
+}

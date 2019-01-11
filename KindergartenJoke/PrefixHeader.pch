@@ -1,0 +1,40 @@
+//
+//  PrefixHeader.pch
+//  KindergartenJoke
+//
+//  Created by ma qianli on 2019/1/11.
+//  Copyright © 2019 ma qianli. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+//MARK: 第三方库头文件
+#import <AFNetworking/AFNetworking.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <MJRefresh/MJRefresh.h>
+#import <hpple/TFHpple.h>
+#import <YYText/YYText.h>
+
+//MARK:工具类头文件
+#import "JRViewCoordinateMacro.h"
+#import "JRNetworking.h"
+#import "MBProgressHUD+JRAdditional.h"
+
+//MARK:base类头文件
+#import "JRBaseTabBarController.h"
+#import "JRBaseNavigationController.h"
+#import "JRBaseViewController.h"
+
+//MARK: Latest
+
+//MARK: HOT
+#import "MQLLatestViewController.h"
+#import "MQLLatestDetailViewController.h"
+#import "MQLHotViewController.h"
+#import "MQLHotDetailViewController.h"
+
+
+
+
+#endif /* PrefixHeader_pch */
