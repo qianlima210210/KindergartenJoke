@@ -10,23 +10,39 @@
 
 @interface MQLHotViewController ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightConstraintOfNavContainerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraintOfLowest;
+
+
+
 @end
 
 @implementation MQLHotViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self generalInit];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)generalInit{
+    self.heightConstraintOfNavContainerView.constant = navigationBarHeight() + kStatusBarHeight;
+    self.bottomConstraintOfLowest.constant = tabBarHeight();
+    
 }
-*/
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    MQLHotDetailViewController *vc = [[MQLHotDetailViewController alloc]initWithNibName:@"MQLHotDetailViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 @end
