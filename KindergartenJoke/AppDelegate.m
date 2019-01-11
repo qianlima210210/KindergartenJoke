@@ -2,6 +2,7 @@
 //  AppDelegate.m
 //  KindergartenJoke
 //  http://haha.sogou.com/tag/li/%E5%B9%BC%E5%84%BF%E5%9B%AD/hot/
+//  http://haha.sogou.com/tag/li/%E5%B9%BC%E5%84%BF%E5%9B%AD/new/
 //  Created by ma qianli on 2019/1/11.
 //  Copyright © 2019 ma qianli. All rights reserved.
 //
