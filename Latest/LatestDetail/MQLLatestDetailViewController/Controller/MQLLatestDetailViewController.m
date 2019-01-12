@@ -20,6 +20,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _viewModel = [MQLLatestDetailViewModel new];
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;

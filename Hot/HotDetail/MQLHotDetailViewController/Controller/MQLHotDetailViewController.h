@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MQLHotDetailViewController : JRBaseViewController
 
+@property (nonatomic, strong) MQLHotDetailViewModel *viewModel;
+
 @end
 
 NS_ASSUME_NONNULL_END

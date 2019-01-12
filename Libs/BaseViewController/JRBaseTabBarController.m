@@ -26,13 +26,13 @@
     MQLLatestViewController *vc0 = [[MQLLatestViewController alloc]initWithNibName:@"MQLLatestViewController" bundle:nil];
     JRBaseNavigationController *nav0 = [[JRBaseNavigationController alloc]initWithRootViewController:vc0];
     NSString *title0 = @"Latest";
-    UIImage *image0 = [UIImage imageNamed:@"private_icon_lovemoney"];
+    UIImage *image0 = [UIImage imageNamed:@"private_icon_cart"];
     nav0.tabBarItem = [[UITabBarItem alloc]initWithTitle:title0 image:image0 selectedImage:nil];
     
     MQLHotViewController *vc1 = [[MQLHotViewController alloc]initWithNibName:@"MQLHotViewController" bundle:nil];
     JRBaseNavigationController *nav1 = [[JRBaseNavigationController alloc]initWithRootViewController:vc1];
     NSString *title1 = @"Hot";
-    UIImage *image1 = [UIImage imageNamed:@"private_icon_cart"];
+    UIImage *image1 = [UIImage imageNamed:@"private_icon_lovemoney"];
     nav1.tabBarItem = [[UITabBarItem alloc]initWithTitle:title1 image:image1 selectedImage:nil];
     
     self.viewControllers = @[nav0, nav1];

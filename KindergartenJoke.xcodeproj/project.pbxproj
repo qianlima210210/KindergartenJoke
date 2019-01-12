@@ -25,6 +25,16 @@
 		D03C99B521E887E80088F0F2 /* MQLLatestDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03C99B321E887E80088F0F2 /* MQLLatestDetailViewController.xib */; };
 		D03C99B921E888290088F0F2 /* MQLLatestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99B721E888290088F0F2 /* MQLLatestViewController.m */; };
 		D03C99BA21E888290088F0F2 /* MQLLatestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03C99B821E888290088F0F2 /* MQLLatestViewController.xib */; };
+		D03C99BD21E97A210088F0F2 /* MQLLatestDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99BC21E97A210088F0F2 /* MQLLatestDataModel.m */; };
+		D03C99C021E97A490088F0F2 /* MQLLatestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99BF21E97A490088F0F2 /* MQLLatestViewModel.m */; };
+		D03C99C321E97B010088F0F2 /* MQLLatestDetailDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99C221E97B010088F0F2 /* MQLLatestDetailDataModel.m */; };
+		D03C99C621E97B260088F0F2 /* MQLLatestDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99C521E97B260088F0F2 /* MQLLatestDetailViewModel.m */; };
+		D03C99C921E97BCC0088F0F2 /* MQLHotDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99C821E97BCC0088F0F2 /* MQLHotDataModel.m */; };
+		D03C99CC21E97BF20088F0F2 /* MQLHotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99CB21E97BF20088F0F2 /* MQLHotViewModel.m */; };
+		D03C99CF21E97C5C0088F0F2 /* MQLHotDetailDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99CE21E97C5C0088F0F2 /* MQLHotDetailDataModel.m */; };
+		D03C99D221E97C750088F0F2 /* MQLHotDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99D121E97C750088F0F2 /* MQLHotDetailViewModel.m */; };
+		D03C99D821E98A410088F0F2 /* MQLJokeItemDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99D721E98A410088F0F2 /* MQLJokeItemDataModel.m */; };
+		D03C99DB21E98A610088F0F2 /* MQLJokeItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99DA21E98A610088F0F2 /* MQLJokeItemViewModel.m */; };
 		D65C311E0D97873E279D717E /* Pods_KindergartenJoke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197FE28F7D9DA26D50DF45B2 /* Pods_KindergartenJoke.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +74,26 @@
 		D03C99B621E888290088F0F2 /* MQLLatestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLLatestViewController.h; sourceTree = "<group>"; };
 		D03C99B721E888290088F0F2 /* MQLLatestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLLatestViewController.m; sourceTree = "<group>"; };
 		D03C99B821E888290088F0F2 /* MQLLatestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MQLLatestViewController.xib; sourceTree = "<group>"; };
+		D03C99BB21E97A210088F0F2 /* MQLLatestDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLLatestDataModel.h; sourceTree = "<group>"; };
+		D03C99BC21E97A210088F0F2 /* MQLLatestDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLLatestDataModel.m; sourceTree = "<group>"; };
+		D03C99BE21E97A490088F0F2 /* MQLLatestViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLLatestViewModel.h; sourceTree = "<group>"; };
+		D03C99BF21E97A490088F0F2 /* MQLLatestViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLLatestViewModel.m; sourceTree = "<group>"; };
+		D03C99C121E97B010088F0F2 /* MQLLatestDetailDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLLatestDetailDataModel.h; sourceTree = "<group>"; };
+		D03C99C221E97B010088F0F2 /* MQLLatestDetailDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLLatestDetailDataModel.m; sourceTree = "<group>"; };
+		D03C99C421E97B260088F0F2 /* MQLLatestDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLLatestDetailViewModel.h; sourceTree = "<group>"; };
+		D03C99C521E97B260088F0F2 /* MQLLatestDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLLatestDetailViewModel.m; sourceTree = "<group>"; };
+		D03C99C721E97BCC0088F0F2 /* MQLHotDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLHotDataModel.h; sourceTree = "<group>"; };
+		D03C99C821E97BCC0088F0F2 /* MQLHotDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLHotDataModel.m; sourceTree = "<group>"; };
+		D03C99CA21E97BF20088F0F2 /* MQLHotViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLHotViewModel.h; sourceTree = "<group>"; };
+		D03C99CB21E97BF20088F0F2 /* MQLHotViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLHotViewModel.m; sourceTree = "<group>"; };
+		D03C99CD21E97C5C0088F0F2 /* MQLHotDetailDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLHotDetailDataModel.h; sourceTree = "<group>"; };
+		D03C99CE21E97C5C0088F0F2 /* MQLHotDetailDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLHotDetailDataModel.m; sourceTree = "<group>"; };
+		D03C99D021E97C750088F0F2 /* MQLHotDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLHotDetailViewModel.h; sourceTree = "<group>"; };
+		D03C99D121E97C750088F0F2 /* MQLHotDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLHotDetailViewModel.m; sourceTree = "<group>"; };
+		D03C99D621E98A410088F0F2 /* MQLJokeItemDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLJokeItemDataModel.h; sourceTree = "<group>"; };
+		D03C99D721E98A410088F0F2 /* MQLJokeItemDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLJokeItemDataModel.m; sourceTree = "<group>"; };
+		D03C99D921E98A610088F0F2 /* MQLJokeItemViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLJokeItemViewModel.h; sourceTree = "<group>"; };
+		D03C99DA21E98A610088F0F2 /* MQLJokeItemViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLJokeItemViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,8 +214,8 @@
 		D03C998D21E876C40088F0F2 /* Latest */ = {
 			isa = PBXGroup;
 			children = (
-				D03C999221E879170088F0F2 /* LatestDetail */,
 				D03C999121E879100088F0F2 /* Latest */,
+				D03C999221E879170088F0F2 /* LatestDetail */,
 			);
 			path = Latest;
 			sourceTree = "<group>";
@@ -193,8 +223,8 @@
 		D03C998E21E876D80088F0F2 /* Hot */ = {
 			isa = PBXGroup;
 			children = (
-				D03C999021E879020088F0F2 /* HotDetail */,
 				D03C998F21E878FC0088F0F2 /* Hot */,
+				D03C999021E879020088F0F2 /* HotDetail */,
 			);
 			path = Hot;
 			sourceTree = "<group>";
@@ -251,6 +281,8 @@
 		D03C999421E8844B0088F0F2 /* MQLHotDetailViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D03C99D021E97C750088F0F2 /* MQLHotDetailViewModel.h */,
+				D03C99D121E97C750088F0F2 /* MQLHotDetailViewModel.m */,
 			);
 			path = MQLHotDetailViewModel;
 			sourceTree = "<group>";
@@ -258,6 +290,8 @@
 		D03C999521E884540088F0F2 /* MQLHotDetailDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				D03C99CD21E97C5C0088F0F2 /* MQLHotDetailDataModel.h */,
+				D03C99CE21E97C5C0088F0F2 /* MQLHotDetailDataModel.m */,
 			);
 			path = MQLHotDetailDataModel;
 			sourceTree = "<group>";
@@ -291,6 +325,8 @@
 		D03C999921E884840088F0F2 /* MQLHotViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D03C99CA21E97BF20088F0F2 /* MQLHotViewModel.h */,
+				D03C99CB21E97BF20088F0F2 /* MQLHotViewModel.m */,
 			);
 			path = MQLHotViewModel;
 			sourceTree = "<group>";
@@ -298,6 +334,8 @@
 		D03C999A21E8848D0088F0F2 /* MQLHotDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				D03C99C721E97BCC0088F0F2 /* MQLHotDataModel.h */,
+				D03C99C821E97BCC0088F0F2 /* MQLHotDataModel.m */,
 			);
 			path = MQLHotDataModel;
 			sourceTree = "<group>";
@@ -331,6 +369,8 @@
 		D03C999E21E884B70088F0F2 /* MQLLatestDetailViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D03C99C421E97B260088F0F2 /* MQLLatestDetailViewModel.h */,
+				D03C99C521E97B260088F0F2 /* MQLLatestDetailViewModel.m */,
 			);
 			path = MQLLatestDetailViewModel;
 			sourceTree = "<group>";
@@ -338,6 +378,8 @@
 		D03C999F21E884BF0088F0F2 /* MQLLatestDetailDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				D03C99C121E97B010088F0F2 /* MQLLatestDetailDataModel.h */,
+				D03C99C221E97B010088F0F2 /* MQLLatestDetailDataModel.m */,
 			);
 			path = MQLLatestDetailDataModel;
 			sourceTree = "<group>";
@@ -371,6 +413,10 @@
 		D03C99A321E885050088F0F2 /* MQLLatestViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D03C99BE21E97A490088F0F2 /* MQLLatestViewModel.h */,
+				D03C99BF21E97A490088F0F2 /* MQLLatestViewModel.m */,
+				D03C99D921E98A610088F0F2 /* MQLJokeItemViewModel.h */,
+				D03C99DA21E98A610088F0F2 /* MQLJokeItemViewModel.m */,
 			);
 			path = MQLLatestViewModel;
 			sourceTree = "<group>";
@@ -378,6 +424,10 @@
 		D03C99A421E8850F0088F0F2 /* MQLLatestDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				D03C99BB21E97A210088F0F2 /* MQLLatestDataModel.h */,
+				D03C99BC21E97A210088F0F2 /* MQLLatestDataModel.m */,
+				D03C99D621E98A410088F0F2 /* MQLJokeItemDataModel.h */,
+				D03C99D721E98A410088F0F2 /* MQLJokeItemDataModel.m */,
 			);
 			path = MQLLatestDataModel;
 			sourceTree = "<group>";
@@ -525,18 +575,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03C99C021E97A490088F0F2 /* MQLLatestViewModel.m in Sources */,
+				D03C99CF21E97C5C0088F0F2 /* MQLHotDetailDataModel.m in Sources */,
 				D01EFCB221E8703D00B46957 /* JRNetworking.m in Sources */,
 				D01EFCB521E8703D00B46957 /* JRBaseNavigationController.m in Sources */,
 				D03C99B921E888290088F0F2 /* MQLLatestViewController.m in Sources */,
 				D01EFC9A21E86E2000B46957 /* main.m in Sources */,
 				D03C99B421E887E80088F0F2 /* MQLLatestDetailViewController.m in Sources */,
+				D03C99C921E97BCC0088F0F2 /* MQLHotDataModel.m in Sources */,
 				D03C99AF21E886AC0088F0F2 /* MQLHotViewController.m in Sources */,
 				D01EFC8C21E86E2000B46957 /* AppDelegate.m in Sources */,
+				D03C99D821E98A410088F0F2 /* MQLJokeItemDataModel.m in Sources */,
 				D01EFCB421E8703D00B46957 /* JRBaseTabBarController.m in Sources */,
 				D01EFCB621E8703D00B46957 /* JRBaseViewController.m in Sources */,
+				D03C99CC21E97BF20088F0F2 /* MQLHotViewModel.m in Sources */,
 				D01EFCB321E8703D00B46957 /* MBProgressHUD+JRAdditional.m in Sources */,
+				D03C99C621E97B260088F0F2 /* MQLLatestDetailViewModel.m in Sources */,
+				D03C99C321E97B010088F0F2 /* MQLLatestDetailDataModel.m in Sources */,
 				D03C99AA21E885C20088F0F2 /* MQLHotDetailViewController.m in Sources */,
+				D03C99BD21E97A210088F0F2 /* MQLLatestDataModel.m in Sources */,
+				D03C99D221E97C750088F0F2 /* MQLHotDetailViewModel.m in Sources */,
 				D01EFCB121E8703D00B46957 /* JRViewCoordinateMacro.m in Sources */,
+				D03C99DB21E98A610088F0F2 /* MQLJokeItemViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

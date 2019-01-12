@@ -27,13 +27,31 @@
 #import "JRBaseViewController.h"
 
 //MARK: Latest
+#import "MQLJokeItemDataModel.h"
+#import "MQLJokeItemViewModel.h"
+#import "MQLLatestDataModel.h"
+#import "MQLLatestViewModel.h"
+#import "MQLLatestViewController.h"
+
+#import "MQLLatestDetailDataModel.h"
+#import "MQLLatestDetailViewModel.h"
+#import "MQLLatestDetailViewController.h"
 
 //MARK: HOT
-#import "MQLLatestViewController.h"
-#import "MQLLatestDetailViewController.h"
+#import "MQLHotDataModel.h"
+#import "MQLHotViewModel.h"
 #import "MQLHotViewController.h"
+
+#import "MQLHotDetailDataModel.h"
+#import "MQLHotDetailViewModel.h"
 #import "MQLHotDetailViewController.h"
 
+
+
+//MARK: MJ刷新提示
+#define MJRefreshStateIdleString @"下拉刷新"
+#define MJRefreshStatePullingString @"释放后刷新"
+#define MJRefreshStateRefreshingString @"加载中..."
 
 
 
