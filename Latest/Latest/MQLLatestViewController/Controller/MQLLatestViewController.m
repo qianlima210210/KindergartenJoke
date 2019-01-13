@@ -44,14 +44,13 @@
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.minimumInteritemSpacing = 10.0;
-    layout.minimumLineSpacing = 10.0;
+    layout.minimumLineSpacing = 15.0;
     layout.sectionInset = UIEdgeInsetsMake(0, 10, 10, 10);
     self.collectionView.collectionViewLayout = layout;
     
-    self.identifier = @"UICollectionViewCell";
-    //UINib *nib = [UINib nibWithNibName:self.identifier bundle:nil];
-    //[self.collectionView registerNib:nib forCellWithReuseIdentifier:self.identifier];
-    [self.collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:self.identifier];
+    self.identifier = @"MQLJokeItemCollectionViewCell";
+    UINib *nib = [UINib nibWithNibName:self.identifier bundle:nil];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:self.identifier];
     
     //添加刷新头
     [self addMJRefreshNormalHeader];
@@ -87,7 +86,8 @@
     [self.viewModel getLatestSuccess:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [weakSelf.collectionView.mj_header endRefreshing];
         //先清除
-        
+        [weakSelf.viewModel.dataModel.jokeItemDataModels removeAllObjects];
+        [weakSelf.viewModel.jokeItemViewModels removeAllObjects];
         
         //再新增
         ///<div class="hc-tit cf">
@@ -95,15 +95,21 @@
         TFHpple *doc = [[TFHpple alloc]initWithHTMLData:responseObject];
         NSArray *elements = [doc searchWithXPathQuery:@"//div"];
 
+        NSMutableArray *titles = [NSMutableArray array];
+        NSMutableArray *contents = [NSMutableArray array];
+        
         for (int i = 0; i < elements.count; i++) {
             TFHppleElement *e = elements[i];
             
-            NSString *title = @"";
             if ([e.attributes[@"class"] isEqualToString:@"hc-tit cf"]) {
                 TFHppleElement *titleE = [e firstChildWithTagName:@"a"];
-                NSLog(@"title: %@", titleE.text);
-                title = titleE.text;
+                [titles addObject: [titleE.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
             }
+            
+        }
+        
+        for (int j = 0; j < elements.count; j++) {
+            TFHppleElement *e = elements[j];
             
             NSString *content = @"";
             if ([e.attributes[@"class"] isEqualToString:@"hcc-text"]) {
@@ -112,10 +118,21 @@
                         content = [content stringByAppendingString:nodeE.content];
                     }
                 }
-                NSLog(@"content%@", content);
+                [contents addObject: [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
             }
         }
         
+        for (int i = 0; i < titles.count; i++) {
+            MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
+            itemDataModel.title = titles[i];
+            itemDataModel.content = contents[i];
+            
+            [weakSelf.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
+            
+            MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
+            itemViewModel.dataModel = itemDataModel;
+            [weakSelf.viewModel.jokeItemViewModels addObject:itemViewModel];
+        }
         
         [weakSelf.collectionView reloadData];
         
@@ -126,21 +143,22 @@
 
 //MARK:UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 3;
+    return self.viewModel.jokeItemViewModels.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.identifier forIndexPath:indexPath];
-    cell.backgroundColor = UIColor.redColor;
+    MQLJokeItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.identifier forIndexPath:indexPath];
+    cell.viewModel = [self.viewModel.jokeItemViewModels objectAtIndex:indexPath.item];
     
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    return CGSizeMake(collectionView.bounds.size.width - 10 * 2, 100);
+    MQLJokeItemViewModel *itemViewModel = [self.viewModel.jokeItemViewModels objectAtIndex:indexPath.item];
+    return [itemViewModel sizeForItem];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

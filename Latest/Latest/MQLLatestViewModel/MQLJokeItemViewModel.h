@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MQLJokeItemViewModel : NSObject
 
+@property (nonatomic, strong) MQLJokeItemDataModel *dataModel;
+
+-(CGSize)sizeForItem;
+
 @end
 
 NS_ASSUME_NONNULL_END

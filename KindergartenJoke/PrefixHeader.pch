@@ -32,6 +32,7 @@
 #import "MQLLatestDataModel.h"
 #import "MQLLatestViewModel.h"
 #import "MQLLatestViewController.h"
+#import "MQLJokeItemCollectionViewCell.h"
 
 #import "MQLLatestDetailDataModel.h"
 #import "MQLLatestDetailViewModel.h"
