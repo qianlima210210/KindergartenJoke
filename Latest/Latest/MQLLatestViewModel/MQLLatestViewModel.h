@@ -21,6 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSURLSessionDataTask *)getLatestSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+//translate request
+- (NSURLSessionDataTask *)traslateChineseContent:(NSString*)chineseContent success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

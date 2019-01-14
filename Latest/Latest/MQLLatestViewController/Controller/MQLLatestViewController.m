@@ -84,12 +84,7 @@
 -(void)getLatest{
     __weak typeof(self) weakSelf = self;
     [self.viewModel getLatestSuccess:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        [weakSelf.collectionView.mj_header endRefreshing];
-        //先清除
-        [weakSelf.viewModel.dataModel.jokeItemDataModels removeAllObjects];
-        [weakSelf.viewModel.jokeItemViewModels removeAllObjects];
-        
-        //再新增
+        //获取中文内容
         ///<div class="hc-tit cf">
         ///<div class="hcc-text">
         TFHpple *doc = [[TFHpple alloc]initWithHTMLData:responseObject];
@@ -122,19 +117,62 @@
             }
         }
         
-        for (int i = 0; i < titles.count; i++) {
-            MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
-            itemDataModel.title = titles[i];
-            itemDataModel.content = contents[i];
+        NSString *pingJieString = @"";
+        NSString *fenGeString = @"MQLmql";
+        for (int k = 0; k < titles.count; k++) {
+            NSString *title = titles[k];
+            NSString *content = contents[k];
             
-            [weakSelf.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
-            
-            MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
-            itemViewModel.dataModel = itemDataModel;
-            [weakSelf.viewModel.jokeItemViewModels addObject:itemViewModel];
+            if (k == titles.count -1) {
+                pingJieString = [pingJieString stringByAppendingFormat:@"%@%@%@", title, fenGeString, content];
+            }else{
+                pingJieString = [pingJieString stringByAppendingFormat:@"%@%@%@%@", title, fenGeString, content, fenGeString];
+            }
         }
         
-        [weakSelf.collectionView reloadData];
+        
+        [weakSelf.viewModel traslateChineseContent:pingJieString success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            [weakSelf.collectionView.mj_header endRefreshing];
+            
+            //先清除
+            [weakSelf.viewModel.dataModel.jokeItemDataModels removeAllObjects];
+            [weakSelf.viewModel.jokeItemViewModels removeAllObjects];
+            
+            //再新增
+            NSString *enPingJieString = @"";
+            NSArray *translateResult = [responseObject objectForKey:@"translateResult"];
+            for (NSDictionary *dic in translateResult.firstObject) {
+                enPingJieString = [enPingJieString stringByAppendingString:dic[@"tgt"]];
+            }
+
+            NSMutableArray *titles = [NSMutableArray array];
+            NSMutableArray *contents = [NSMutableArray array];
+            for (int l = 0; l < [enPingJieString componentsSeparatedByString:fenGeString].count; l++) {
+                if (l % 2 == 0) {
+                    [titles addObject:[enPingJieString componentsSeparatedByString:fenGeString][l]];
+                }else{
+                    [contents addObject:[enPingJieString componentsSeparatedByString:fenGeString][l]];
+                }
+            }
+            
+             for (int i = 0; i < titles.count; i++) {
+             MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
+             itemDataModel.title = titles[i];
+             itemDataModel.content = contents[i];
+             
+             [weakSelf.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
+             
+             MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
+             itemViewModel.dataModel = itemDataModel;
+             [weakSelf.viewModel.jokeItemViewModels addObject:itemViewModel];
+             }
+             
+             [weakSelf.collectionView reloadData];
+            
+            
+        } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+            [weakSelf.collectionView.mj_header endRefreshing];
+        }];
         
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
         [weakSelf.collectionView.mj_header endRefreshing];

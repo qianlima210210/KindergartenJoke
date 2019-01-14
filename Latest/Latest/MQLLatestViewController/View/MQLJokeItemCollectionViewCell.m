@@ -36,7 +36,7 @@
 -(void)setContent{
     self.titleLab.text = self.viewModel.dataModel.title;
     self.contentLab.text = self.viewModel.dataModel.content;
-    self.heightOfContentLab.constant = [self.viewModel sizeForItem].height - 20;
+    self.heightOfContentLab.constant = [self.viewModel sizeForItem].height - 40;
 }
 
 @end

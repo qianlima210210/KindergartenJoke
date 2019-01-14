@@ -30,7 +30,7 @@
     if (self.size.width == 0 || self.size.height == 0) {
         CGFloat width = kScreenWidth - 10 * 2;
         CGRect frame = [self.dataModel.content boundingRectWithSize:CGSizeMake(width, 1000) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{ NSFontAttributeName:[UIFont systemFontOfSize:15.0]} context:nil];
-        self.size = CGSizeMake(width, ceil(frame.size.height) + 1 + 20);
+        self.size = CGSizeMake(width, ceil(frame.size.height) + 1 + 40);
     }
     
     return self.size;

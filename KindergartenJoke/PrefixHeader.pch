@@ -20,6 +20,7 @@
 #import "JRViewCoordinateMacro.h"
 #import "JRNetworking.h"
 #import "MBProgressHUD+JRAdditional.h"
+#import "NSString+JRAdditional.h"
 
 //MARK:base类头文件
 #import "JRBaseTabBarController.h"

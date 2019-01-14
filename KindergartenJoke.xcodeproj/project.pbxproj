@@ -37,6 +37,7 @@
 		D03C99DB21E98A610088F0F2 /* MQLJokeItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99DA21E98A610088F0F2 /* MQLJokeItemViewModel.m */; };
 		D03C99DF21EB51110088F0F2 /* MQLJokeItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C99DD21EB51110088F0F2 /* MQLJokeItemCollectionViewCell.m */; };
 		D03C99E021EB51110088F0F2 /* MQLJokeItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03C99DE21EB51110088F0F2 /* MQLJokeItemCollectionViewCell.xib */; };
+		D043AE4D21EC26650029D264 /* NSString+JRAdditional.m in Sources */ = {isa = PBXBuildFile; fileRef = D043AE4C21EC26650029D264 /* NSString+JRAdditional.m */; };
 		D65C311E0D97873E279D717E /* Pods_KindergartenJoke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197FE28F7D9DA26D50DF45B2 /* Pods_KindergartenJoke.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +100,8 @@
 		D03C99DC21EB51110088F0F2 /* MQLJokeItemCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MQLJokeItemCollectionViewCell.h; sourceTree = "<group>"; };
 		D03C99DD21EB51110088F0F2 /* MQLJokeItemCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MQLJokeItemCollectionViewCell.m; sourceTree = "<group>"; };
 		D03C99DE21EB51110088F0F2 /* MQLJokeItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MQLJokeItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		D043AE4B21EC26650029D264 /* NSString+JRAdditional.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+JRAdditional.h"; sourceTree = "<group>"; };
+		D043AE4C21EC26650029D264 /* NSString+JRAdditional.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+JRAdditional.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,7 @@
 		D01EFCA021E8703C00B46957 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				D043AE4A21EC26200029D264 /* NSString+JRAdditional */,
 				D01EFCA121E8703C00B46957 /* ViewCoordinateMacro */,
 				D01EFCA421E8703C00B46957 /* Networking */,
 				D01EFCA721E8703C00B46957 /* MBProgressHUD+JRAdditional */,
@@ -457,6 +461,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		D043AE4A21EC26200029D264 /* NSString+JRAdditional */ = {
+			isa = PBXGroup;
+			children = (
+				D043AE4B21EC26650029D264 /* NSString+JRAdditional.h */,
+				D043AE4C21EC26650029D264 /* NSString+JRAdditional.m */,
+			);
+			path = "NSString+JRAdditional";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -594,6 +607,7 @@
 				D03C99B421E887E80088F0F2 /* MQLLatestDetailViewController.m in Sources */,
 				D03C99C921E97BCC0088F0F2 /* MQLHotDataModel.m in Sources */,
 				D03C99AF21E886AC0088F0F2 /* MQLHotViewController.m in Sources */,
+				D043AE4D21EC26650029D264 /* NSString+JRAdditional.m in Sources */,
 				D01EFC8C21E86E2000B46957 /* AppDelegate.m in Sources */,
 				D03C99D821E98A410088F0F2 /* MQLJokeItemDataModel.m in Sources */,
 				D01EFCB421E8703D00B46957 /* JRBaseTabBarController.m in Sources */,
