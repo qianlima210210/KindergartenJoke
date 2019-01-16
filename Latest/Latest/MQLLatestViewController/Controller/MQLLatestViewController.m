@@ -66,7 +66,7 @@
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //发送请求
-        [weakSelf getFirstPageLatest];
+        [weakSelf getLatestWithFirstPage:YES];
     }];
     
     // 设置文字
@@ -83,17 +83,19 @@
 }
 
 -(void)addMJRefreshAutoNormalFooter{
+    __weak typeof(self) weakSelf = self;
     MJRefreshAutoNormalFooter *mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        
+        //发送请求
+        [weakSelf getLatestWithFirstPage:NO];
     }];
     mj_footer.triggerAutomaticallyRefreshPercent = 0.1;
     self.collectionView.mj_footer = mj_footer;
 }
 
 //发送请求
--(void)getFirstPageLatest{
+-(void)getLatestWithFirstPage:(BOOL)isFirstPage{
     __weak typeof(self) weakSelf = self;
-    [self.viewModel getLatestSuccess:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [self.viewModel getLatestWithFirstPage:isFirstPage success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         //获取中文内容
         ///<div class="hc-tit cf">
         ///<div class="hcc-text">
@@ -142,13 +144,8 @@
         
         
         [weakSelf.viewModel traslateChineseContent:pingJieString success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            [weakSelf.collectionView.mj_header endRefreshing];
             
-            //先清除
-            [weakSelf.viewModel.dataModel.jokeItemDataModels removeAllObjects];
-            [weakSelf.viewModel.jokeItemViewModels removeAllObjects];
-            
-            //再新增
+            //解析出英文内容
             NSString *enPingJieString = @"";
             NSArray *translateResult = [responseObject objectForKey:@"translateResult"];
             for (NSDictionary *dic in translateResult.firstObject) {
@@ -165,28 +162,66 @@
                 }
             }
             
-             for (int i = 0; i < titles.count; i++) {
-             MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
-             itemDataModel.title = titles[i];
-             itemDataModel.content = contents[i];
-             
-             [weakSelf.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
-             
-             MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
-             itemViewModel.dataModel = itemDataModel;
-             [weakSelf.viewModel.jokeItemViewModels addObject:itemViewModel];
-             }
+            if (isFirstPage) {
+                //触发第一页的是mj_header
+                [weakSelf.collectionView.mj_header endRefreshing];
+                
+                weakSelf.viewModel.pageNumber = 1;
+                
+                //先清除
+                [weakSelf.viewModel.dataModel.jokeItemDataModels removeAllObjects];
+                [weakSelf.viewModel.jokeItemViewModels removeAllObjects];
+                
+                //再新增
+                for (int i = 0; i < titles.count; i++) {
+                    MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
+                    itemDataModel.title = titles[i];
+                    itemDataModel.content = contents[i];
+                    
+                    [weakSelf.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
+                    
+                    MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
+                    itemViewModel.dataModel = itemDataModel;
+                    [weakSelf.viewModel.jokeItemViewModels addObject:itemViewModel];
+                }
+                
+            }else{
+                //触发非第一页的是mj_rooter
+                [weakSelf.collectionView.mj_footer endRefreshing];
+                
+                weakSelf.viewModel.pageNumber += 1;
+                
+                //再新增
+                for (int i = 0; i < titles.count; i++) {
+                    MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
+                    itemDataModel.title = titles[i];
+                    itemDataModel.content = contents[i];
+                    
+                    [weakSelf.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
+                    
+                    MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
+                    itemViewModel.dataModel = itemDataModel;
+                    [weakSelf.viewModel.jokeItemViewModels addObject:itemViewModel];
+                }
+            }
             
-            weakSelf.viewModel.pageNumber += 1;
-             [weakSelf.collectionView reloadData];
+            [weakSelf.collectionView reloadData];
             
             
         } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-            [weakSelf.collectionView.mj_header endRefreshing];
+            if (isFirstPage) {
+                [weakSelf.collectionView.mj_header endRefreshing];
+            }else{
+                [weakSelf.collectionView.mj_footer endRefreshing];
+            }
         }];
         
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-        [weakSelf.collectionView.mj_header endRefreshing];
+        if (isFirstPage) {
+            [weakSelf.collectionView.mj_header endRefreshing];
+        }else{
+            [weakSelf.collectionView.mj_footer endRefreshing];
+        }
     }];
 }
 
@@ -217,7 +252,13 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     //当CollectionView的内容高度大于等于CollectionView自身高度时，才显示脚部刷新
     if (self.collectionView.contentSize.height >= self.collectionView.bounds.size.height) {
-        self.collectionView.mj_footer.hidden = NO;
+        
+        if (self.viewModel.pageNumber >= self.viewModel.allPageNumber) {
+            self.collectionView.mj_footer.hidden = YES;
+        }else{
+            self.collectionView.mj_footer.hidden = NO;
+        }
+        
     }else{
         self.collectionView.mj_footer.hidden = YES;
     }

@@ -16,9 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *jokeItemViewModels;
 
 @property (nonatomic, assign) NSInteger pageNumber;     //当前数据已到第几页
+@property (nonatomic, assign) NSInteger allPageNumber;  //总页数
 
 //发送请求
-- (NSURLSessionDataTask *)getLatestSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+- (NSURLSessionDataTask *)getLatestWithFirstPage:(BOOL)isFirstPage success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 //translate request

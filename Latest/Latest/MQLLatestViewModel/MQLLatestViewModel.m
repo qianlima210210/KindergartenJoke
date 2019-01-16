@@ -17,15 +17,21 @@
         _dataModel = [MQLLatestDataModel new];
         _jokeItemViewModels = [NSMutableArray array];
         _pageNumber = 0;
+        _allPageNumber = 6;
     }
     return self;
 }
 
 //发送请求
-- (NSURLSessionDataTask *)getLatestSuccess:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+- (NSURLSessionDataTask *)getLatestWithFirstPage:(BOOL)isFirstPage success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
+    NSString *urlString = @"";
+    if (isFirstPage) {
+        urlString = [NSString stringWithFormat:@"http://haha.sogou.com/tag/li/幼儿园/new/%d", 1];
+    }else{
+        urlString = [NSString stringWithFormat:@"http://haha.sogou.com/tag/li/幼儿园/new/%zd", self.pageNumber + 1];
+    }
     
-    NSString *urlString = [NSString stringWithFormat:@"http://haha.sogou.com/tag/li/幼儿园/new/%zd", self.pageNumber + 1];
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
