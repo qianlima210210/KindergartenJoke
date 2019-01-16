@@ -54,6 +54,9 @@
     
     //添加刷新头
     [self addMJRefreshNormalHeader];
+    
+    //添加刷新脚
+    [self addMJRefreshAutoNormalFooter];
 }
 
 - (void)addMJRefreshNormalHeader
@@ -63,7 +66,7 @@
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         //发送请求
-        [weakSelf getLatest];
+        [weakSelf getFirstPageLatest];
     }];
     
     // 设置文字
@@ -79,9 +82,16 @@
     [self.collectionView.mj_header beginRefreshing];
 }
 
+-(void)addMJRefreshAutoNormalFooter{
+    MJRefreshAutoNormalFooter *mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+    }];
+    mj_footer.triggerAutomaticallyRefreshPercent = 0.1;
+    self.collectionView.mj_footer = mj_footer;
+}
 
 //发送请求
--(void)getLatest{
+-(void)getFirstPageLatest{
     __weak typeof(self) weakSelf = self;
     [self.viewModel getLatestSuccess:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         //获取中文内容
@@ -204,6 +214,13 @@
     
 }
 
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    //当CollectionView的内容高度大于等于CollectionView自身高度时，才显示脚部刷新
+    if (self.collectionView.contentSize.height >= self.collectionView.bounds.size.height) {
+        self.collectionView.mj_footer.hidden = NO;
+    }else{
+        self.collectionView.mj_footer.hidden = YES;
+    }
+}
 
 @end
