@@ -166,7 +166,8 @@
              itemViewModel.dataModel = itemDataModel;
              [weakSelf.viewModel.jokeItemViewModels addObject:itemViewModel];
              }
-             
+            
+            weakSelf.viewModel.pageNumber += 1;
              [weakSelf.collectionView reloadData];
             
             
@@ -203,25 +204,6 @@
     
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    ///////////////////
-    ///////////////////////
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSString *url = @"http://haha.sogou.com/tag/li/%E5%B9%BC%E5%84%BF%E5%9B%AD/new/1/";
-    
-//    NSURL *url1 = [NSURL URLWithString:url];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url1 cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
-//
-//    self.task = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
-//        NSLog(@"%@", responseObject);
-//
-//    }];
-//
-//    [self.task resume];
-    
-
-}
 
 
 @end

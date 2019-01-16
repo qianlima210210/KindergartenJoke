@@ -43,15 +43,15 @@
 - (NSURLSessionDataTask *)traslateChineseContent:(NSString*)chineseContent success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                   failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
 
-    NSString *url = @"http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&smartresult=ugc";
-    NSString *from = @"zh-CHS";
-    NSString *to = @"en";
+    NSString *url = @"http://fanyi.youdao.com/translate";
+    NSString *from = @"ZH_CN";
+    NSString *to = @"EN";
     NSString *q = chineseContent;
     NSString *u = @"fanyideskweb";
     NSString *d = q;
     long ctime = (long)[NSDate date].timeIntervalSince1970 * 1000;
     NSString *f = [NSString stringWithFormat:@"%zd", ctime + rand() % 10 + 1];
-    NSString *c = @"ebSeFb%=XZ%T[KZ)c(sy!";
+    NSString *c = @"p09@Bn{h02_BIEe]$P^nG";
     
     //String sign = md5(u + d + f + c);
     NSString *input = [NSString stringWithFormat:@"%@%@%@%@", u, d, f, c];
@@ -61,7 +61,7 @@
     [params setObject:q forKey:@"i"];
     [params setObject:from forKey:@"from"];
     [params setObject:to forKey:@"to"];
-    [params setObject:@"dict" forKey:@"smartresult"];
+    [params setObject:@"rule" forKey:@"smartresult"];
     [params setObject:@"fanyideskweb" forKey:@"client"];
     [params setObject:f forKey:@"salt"];
     [params setObject:sign forKey:@"sign"];
@@ -69,7 +69,7 @@
     [params setObject:@"2.1" forKey:@"version"];
     [params setObject:@"fanyi.web" forKey:@"keyfrom"];
     [params setObject:@"FY_BY_CLICKBUTTION" forKey:@"action"];
-    [params setObject:@"true" forKey:@"typoResult"];
+    [params setObject:@"false" forKey:@"typoResult"];
     
     __block NSMutableString *queryString = [NSMutableString new];
     [params enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
