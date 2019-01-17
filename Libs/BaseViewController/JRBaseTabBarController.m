@@ -24,12 +24,13 @@
 -(void)initControllers{
     
     MQLLatestViewController *vc0 = [[MQLLatestViewController alloc]initWithNibName:@"MQLLatestViewController" bundle:nil];
+    vc0.isLatestItem = YES;
     JRBaseNavigationController *nav0 = [[JRBaseNavigationController alloc]initWithRootViewController:vc0];
     NSString *title0 = @"Latest";
     UIImage *image0 = [UIImage imageNamed:@"private_icon_cart"];
     nav0.tabBarItem = [[UITabBarItem alloc]initWithTitle:title0 image:image0 selectedImage:nil];
     
-    MQLHotViewController *vc1 = [[MQLHotViewController alloc]initWithNibName:@"MQLHotViewController" bundle:nil];
+    MQLLatestViewController *vc1 = [[MQLLatestViewController alloc]initWithNibName:@"MQLLatestViewController" bundle:nil];
     JRBaseNavigationController *nav1 = [[JRBaseNavigationController alloc]initWithRootViewController:vc1];
     NSString *title1 = @"Hot";
     UIImage *image1 = [UIImage imageNamed:@"private_icon_lovemoney"];

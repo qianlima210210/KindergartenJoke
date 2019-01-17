@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MQLLatestViewModel : NSObject
 
+@property (nonatomic, assign) BOOL isLatestItem;   //是否最新项目
+
 @property (nonatomic, strong) MQLLatestDataModel *dataModel;
 @property (nonatomic, strong) NSMutableArray *jokeItemViewModels;
 

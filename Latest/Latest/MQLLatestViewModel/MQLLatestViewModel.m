@@ -26,10 +26,11 @@
 - (NSURLSessionDataTask *)getLatestWithFirstPage:(BOOL)isFirstPage success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
     NSString *urlString = @"";
+    NSString *tagName = (self.isLatestItem == YES) ? @"new" : @"hot";
     if (isFirstPage) {
-        urlString = [NSString stringWithFormat:@"http://haha.sogou.com/tag/li/幼儿园/new/%d", 1];
+        urlString = [NSString stringWithFormat:@"http://haha.sogou.com/tag/li/幼儿园/%@/%d", tagName, 1];
     }else{
-        urlString = [NSString stringWithFormat:@"http://haha.sogou.com/tag/li/幼儿园/new/%zd", self.pageNumber + 1];
+        urlString = [NSString stringWithFormat:@"http://haha.sogou.com/tag/li/幼儿园/%@/%zd", tagName, self.pageNumber + 1];
     }
     
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];

@@ -26,6 +26,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _viewModel = [MQLLatestViewModel new];
+        _viewModel.isLatestItem = _isLatestItem;
     }
     return self;
 }
@@ -123,6 +124,8 @@
                 for (TFHppleElement *nodeE in e.children) {
                     if (nodeE.content != nil) {
                         content = [content stringByAppendingString:nodeE.content];
+                    }else{
+                        content = [content stringByAppendingString:@"br"];
                     }
                 }
                 [contents addObject: [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
@@ -142,6 +145,11 @@
             }
         }
         
+        BOOL isInChina = [weakSelf isInChina];
+        if (isInChina) {
+            [weakSelf handleWithTitles:titles contents:contents isFirstPage:isFirstPage];
+            return;
+        }
         
         [weakSelf.viewModel traslateChineseContent:pingJieString success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             
@@ -162,50 +170,7 @@
                 }
             }
             
-            if (isFirstPage) {
-                //触发第一页的是mj_header
-                [weakSelf.collectionView.mj_header endRefreshing];
-                
-                weakSelf.viewModel.pageNumber = 1;
-                
-                //先清除
-                [weakSelf.viewModel.dataModel.jokeItemDataModels removeAllObjects];
-                [weakSelf.viewModel.jokeItemViewModels removeAllObjects];
-                
-                //再新增
-                for (int i = 0; i < titles.count; i++) {
-                    MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
-                    itemDataModel.title = titles[i];
-                    itemDataModel.content = contents[i];
-                    
-                    [weakSelf.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
-                    
-                    MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
-                    itemViewModel.dataModel = itemDataModel;
-                    [weakSelf.viewModel.jokeItemViewModels addObject:itemViewModel];
-                }
-                
-            }else{
-                //触发非第一页的是mj_rooter
-                [weakSelf.collectionView.mj_footer endRefreshing];
-                
-                weakSelf.viewModel.pageNumber += 1;
-                
-                //再新增
-                for (int i = 0; i < titles.count; i++) {
-                    MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
-                    itemDataModel.title = titles[i];
-                    itemDataModel.content = contents[i];
-                    
-                    [weakSelf.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
-                    
-                    MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
-                    itemViewModel.dataModel = itemDataModel;
-                    [weakSelf.viewModel.jokeItemViewModels addObject:itemViewModel];
-                }
-            }
-            
-            [weakSelf.collectionView reloadData];
+            [weakSelf handleWithTitles:titles contents:contents isFirstPage:isFirstPage];
             
             
         } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
@@ -223,6 +188,71 @@
             [weakSelf.collectionView.mj_footer endRefreshing];
         }
     }];
+}
+
+- (BOOL)isInChina {
+    
+    BOOL result = NO;
+    //NSString* localeStr = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
+    
+    if([[[NSTimeZone localTimeZone] name] rangeOfString:@"Asia/Chongqing"].location == 0 ||
+       [[[NSTimeZone localTimeZone] name] rangeOfString:@"Asia/Harbin"].location == 0 ||
+       [[[NSTimeZone localTimeZone] name] rangeOfString:@"Asia/Hong_Kong"].location == 0 ||
+       [[[NSTimeZone localTimeZone] name] rangeOfString:@"Asia/Macau"].location == 0 ||
+       [[[NSTimeZone localTimeZone] name] rangeOfString:@"Asia/Shanghai"].location == 0 ||
+       [[[NSTimeZone localTimeZone] name] rangeOfString:@"Asia/Taipei"].location == 0)
+    {
+        result = YES;
+    }
+    return result;
+}
+
+-(void)handleWithTitles:(NSArray*)titles contents:(NSArray*)contents isFirstPage:(BOOL)isFirstPage{
+    
+    if (isFirstPage) {
+        //触发第一页的是mj_header
+        [self.collectionView.mj_header endRefreshing];
+        
+        self.viewModel.pageNumber = 1;
+        
+        //先清除
+        [self.viewModel.dataModel.jokeItemDataModels removeAllObjects];
+        [self.viewModel.jokeItemViewModels removeAllObjects];
+        
+        //再新增
+        for (int i = 0; i < titles.count; i++) {
+            MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
+            itemDataModel.title = titles[i];
+            itemDataModel.content = contents[i];
+            
+            [self.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
+            
+            MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
+            itemViewModel.dataModel = itemDataModel;
+            [self.viewModel.jokeItemViewModels addObject:itemViewModel];
+        }
+        
+    }else{
+        //触发非第一页的是mj_rooter
+        [self.collectionView.mj_footer endRefreshing];
+        
+        self.viewModel.pageNumber += 1;
+        
+        //再新增
+        for (int i = 0; i < titles.count; i++) {
+            MQLJokeItemDataModel *itemDataModel = [MQLJokeItemDataModel new];
+            itemDataModel.title = titles[i];
+            itemDataModel.content = contents[i];
+            
+            [self.viewModel.dataModel.jokeItemDataModels addObject:itemDataModel];
+            
+            MQLJokeItemViewModel *itemViewModel = [MQLJokeItemViewModel new];
+            itemViewModel.dataModel = itemDataModel;
+            [self.viewModel.jokeItemViewModels addObject:itemViewModel];
+        }
+    }
+    
+    [self.collectionView reloadData];
 }
 
 //MARK:UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
