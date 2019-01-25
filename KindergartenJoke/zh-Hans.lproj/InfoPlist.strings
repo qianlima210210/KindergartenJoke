@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  KindergartenJoke
+
+  Created by ma qianli on 2019/1/25.
+  Copyright © 2019 ma qianli. All rights reserved.
+*/
+
+CFBundleDisplayName = "幼儿园笑话";
+UILaunchStoryboardName = "LauchScreenStoryboardZh";
